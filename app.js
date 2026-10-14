@@ -59,3 +59,25 @@ $('markTools').addEventListener('click',e=>{const btn=e.target.closest('[data-ma
 
 if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
 init();
+
+// V4 — état du panneau de navigation conservé sur cet iPad.
+(function(){
+ const toggle=document.getElementById('toggleSidebar');
+ const layout=document.querySelector('.layout');
+ const storageKey='claude-ipad-sidebar-collapsed-v4';
+ if(!toggle||!layout)return;
+ let collapsed=false;
+ try{collapsed=localStorage.getItem(storageKey)==='1'}catch(e){}
+ function update(){
+   layout.classList.toggle('sidebar-collapsed',collapsed);
+   toggle.textContent=collapsed?'☰ Afficher le menu':'☰ Masquer le menu';
+   toggle.setAttribute('aria-expanded',String(!collapsed));
+   toggle.setAttribute('title',collapsed?'Afficher les conversations':'Masquer les conversations');
+ }
+ toggle.addEventListener('click',()=>{
+   collapsed=!collapsed;
+   try{localStorage.setItem(storageKey,collapsed?'1':'0')}catch(e){}
+   update();
+ });
+ update();
+})();
