@@ -1,0 +1,1 @@
+{"name":"Mes archives Claude — iPad","short_name":"Archives Claude","description":"Lecteur privé de conversations, disponible hors ligne.","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#17151c","theme_color":"#17151c","icons":[{"src":"icon.png","sizes":"192x192","type":"image/png","purpose":"any maskable"}]}
